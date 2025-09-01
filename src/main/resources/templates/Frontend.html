@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Info</title>
+</head>
+<body>
+<h2>Student Details</h2>
+<p>This simple page calls Spring Boot APIs at <code>/api/students</code> to create, update, and delete students.</p>
+
+<section>
+  <h3>Create a Student</h3>
+  <div>
+    <input id="name" type="text" placeholder="Name" required />
+    <input id="age" type="number" placeholder="Age" min="0" required />
+    <button id="createBtn">Add</button>
+  </div>
+  <div id="createMsg"></div>
+</section>
+
+<section>
+  <h3>All Students</h3>
+  <button id="reloadBtn">Reload</button>
+  <table border="1" id="tbl">
+    <thead>
+    <tr>
+      <th>ID</th><th>Name</th><th>Age</th><th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    <tr><td colspan="4">Loading…</td></tr>
+    </tbody>
+  </table>
+  <div id="listMsg"></div>
+</section>
+
+<script>
+  //TODO: try to call backend api from the frontend!
+</script>
+</body>
+</html>
