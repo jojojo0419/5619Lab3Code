@@ -13,8 +13,15 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-//                        .allowedOrigins()
+                        // .allowedOrigins()
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
+            }
+
+            // 추가: /students -> templates/Frontend.html
+            @Override
+            public void addViewControllers(
+                    org.springframework.web.servlet.config.annotation.ViewControllerRegistry registry) {
+                registry.addViewController("/students").setViewName("Frontend");
             }
         };
     }
