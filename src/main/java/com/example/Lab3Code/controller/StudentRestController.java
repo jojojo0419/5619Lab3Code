@@ -8,34 +8,43 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@RestController // REST API 컨트롤러 선언
-@RequestMapping("/api/students") // /api/students로 시작하는 요청 처리 🔥
+@RestController // Marks this class as a REST API controller
+@RequestMapping("/api/students") // All endpoints here will start with /api/students 🔥
 public class StudentRestController {
 
-    // StudentRepository 에서 만든거 이렇게 씀
+    // Inject the StudentRepository through constructor
     private final StudentRepository repository;
 
     public StudentRestController(StudentRepository repository) {
         this.repository = repository;
     }
 
-    // DONE: finish business logics!
-    // GET => /students
-    // POST => /students
-    // PUT => /students/{id}
-    // DELETE => /students/{id}
-
+    // -------------------------------
+    // GET /api/students
+    // Returns a list of all students
+    // -------------------------------
     @GetMapping
     public List<Student> getAllStudents() {
         return repository.findAll();
     }
 
+    // -------------------------------
+    // POST /api/students
+    // Creates a new student
+    // Returns the saved student object with status 201 Created
+    // -------------------------------
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student) {
         return repository.save(student);
     }
 
+    // -------------------------------
+    // PUT /api/students/{id}
+    // Updates the student with the given ID
+    // Returns the updated student object
+    // If the student is not found, throws 404 Not Found
+    // -------------------------------
     @PutMapping("/{id}")
     public Student updateStudent(@PathVariable Integer id, @RequestBody Student updated) {
         return repository.findById(id)
@@ -47,6 +56,12 @@ public class StudentRestController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
     }
 
+    // -------------------------------
+    // DELETE /api/students/{id}
+    // Deletes the student with the given ID
+    // If not found, throws 404 Not Found
+    // Returns 204 No Content on success
+    // -------------------------------
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteStudent(@PathVariable Integer id) {
