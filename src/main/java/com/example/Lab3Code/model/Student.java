@@ -9,14 +9,14 @@ import lombok.*;
 @Entity
 @Table(name = "student")
 public class Student {
-    @Id // 기본키
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // DB에서 auto-increment
-    private Integer id; // type integer
+    @Id // Primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
+    private Integer id;
 
-    @Column(nullable = false, length = 100) // varchar(100) NOT NULL
+    @Column(nullable = false, length = 100) // Not null, max length 100
     private String name;
 
-    @Column(nullable = false) // Integer NOT NULL
+    @Column(nullable = false) // Not null
     private Integer age;
 
 }
